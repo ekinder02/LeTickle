@@ -3,24 +3,26 @@ from kivy.uix.label import Label
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.image import Image,AsyncImage
 from kivy.animation import Animation
+from kivy.uix.button import Button
 import random
-
-class TestWidget(BoxLayout):
-    def __init__(self, **args):
-        super(TestWidget, self).__init__(**args)
-        aimg = AsyncImage(
-            source='https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/1966.png'
-        )
-        self.add_widget(aimg)
-        animation = Animation(pos=(random.randint(-500,500),random.randint(-500,500)), t='in_out_back')
-        animation += Animation(pos=(random.randint(-500,500),random.randint(-500,500)), t='in_out_back')
-        animation += Animation(pos=(random.randint(-500,500), random.randint(-500,500)), t='in_out_back')
-        animation.repeat = True
-        animation.start(self)
-
-
-class TestApp(App):
-    def build(self):
-        return TestWidget()
+        
+class ButtonApp(App): 
+        
+    def build(self): 
+        btn = Button(text ="",
+                     color =(1, 0, .65, 1),
+                     background_normal = 'lebron.png',
+                     background_down ='lebron2.jpg',
+                     size_hint = (.3, .3),
+                     pos_hint = {"x":0.35, "y":0.3}
+                   ) 
+     
+        return btn 
+            
     
-TestApp().run()
+root = ButtonApp() 
+    
+# run function runs the whole program 
+# i.e run() method which calls the target 
+# function passed to the constructor. 
+root.run()
