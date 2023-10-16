@@ -6,29 +6,41 @@ from kivy.animation import Animation
 from kivy.uix.button import Button
 import random
 from kivy.config import Config
+import time
 
 Config.set('graphics', 'width', '960')
 Config.set('graphics', 'height', '540')
 Config.write()
+
+tickles = 0
         
-class ButtonApp(App): 
+class LeTickleApp(App): 
     def build(self): 
         btn = Button(text ="",
                      color =(1, 0, .65, 1),
                      background_normal = 'lebron.png',
-                     background_down ='lebron2.png',
+                     background_down ='lebronBlush4.png',
                      size_hint = (.3, .3),
-                     pos = (0,0)
+                     pos = (0,0),
                    ) 
-        btn.bind(on_press =lambda x:self.callback(btn))
+        btn.bind(on_press = lambda x: self.callback(btn))
         return btn 
     def callback(self,btn):
         animation = Animation(pos=(random.randint(0,960),random.randint(0,540)), t='in_out_back')
         animation.start(btn)
-        print("tickle")
+        global tickles
+        tickles += 1
+        if tickles > 5 and tickles <= 10:
+            btn.background_normal = 'lebronBlush1.png'
+        elif tickles > 10 and tickles <= 15:
+            btn.background_normal = 'lebronBlush2.png'
+        elif tickles > 15 and tickles <= 20:
+            btn.background_normal = 'lebronBlush3.png'
+        elif tickles > 20:
+            btn.background_normal = 'lebronBlush4.png'
             
     
-root = ButtonApp() 
+root = LeTickleApp() 
     
 # run function runs the whole program 
 # i.e run() method which calls the target 
