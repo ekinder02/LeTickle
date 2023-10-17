@@ -23,7 +23,7 @@ class LeTickleApp(App):
     
 class SoundPlayer(BoxLayout):
     def play_sound(self):
-        sound = SoundLoader.load('Machine-Gun-Automatic-Fire-A-www.fesliyanstudios.com (1).mp3')
+        sound = SoundLoader.load('Cartoon Human Male Giggle - QuickSounds.com.mp3')
         if sound:
             sound.play()
 
@@ -49,6 +49,7 @@ class LebronLayout(Widget):
         self.add_widget(btn)
     
     def callback(self,btn,pb):
+        SoundPlayer.play_sound(self)
         global canClick
         global lastClick
         currentTime = time.time()
