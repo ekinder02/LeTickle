@@ -2,9 +2,11 @@ from kivy.app import App
 from kivy.animation import Animation
 from kivy.uix.button import Button
 import random
+from kivy.core.audio import SoundLoader
 from kivy.config import Config
 from kivy.uix.progressbar import ProgressBar
 from kivy.uix.widget import Widget
+from kivy.uix.boxlayout import BoxLayout
 import time
 
 Config.set('graphics', 'width', '960')
@@ -18,6 +20,12 @@ lastClick = 0
 class LeTickleApp(App): 
     def build(self): 
         return(LebronLayout())
+    
+class SoundPlayer(BoxLayout):
+    def play_sound(self):
+        sound = SoundLoader.load('Machine-Gun-Automatic-Fire-A-www.fesliyanstudios.com (1).mp3')
+        if sound:
+            sound.play()
 
           
 class LebronLayout(Widget):
