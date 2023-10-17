@@ -4,6 +4,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.image import Image,AsyncImage
 from kivy.animation import Animation
 from kivy.uix.button import Button
+from kivy.core.audio import SoundLoader
 import random
 from kivy.config import Config
 import time
@@ -13,8 +14,15 @@ Config.set('graphics', 'height', '540')
 Config.write()
 
 tickles = 0
+
+class SoundPlayer(BoxLayout):
+    def play_sound(self):
+        sound = SoundLoader.load('Machine-Gun-Automatic-Fire-A-www.fesliyanstudios.com (1).mp3')
+        if sound:
+            sound.play()
+           
         
-class LeTickleApp(App): 
+class LeTickleApp(App):
     def build(self): 
         btn = Button(text ="",
                      color =(1, 0, .65, 1),
@@ -26,6 +34,7 @@ class LeTickleApp(App):
         btn.bind(on_press = lambda x: self.callback(btn))
         return btn 
     def callback(self,btn):
+        SoundPlayer.play_sound(self)
         animation = Animation(pos=(random.randint(0,960),random.randint(0,540)), t='in_out_back')
         animation.start(btn)
         global tickles
@@ -38,7 +47,9 @@ class LeTickleApp(App):
             btn.background_normal = 'lebronBlush3.png'
         elif tickles > 20:
             btn.background_normal = 'lebronBlush4.png'
-            
+
+    
+ 
     
 root = LeTickleApp() 
     
