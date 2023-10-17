@@ -8,6 +8,7 @@ from kivy.uix.progressbar import ProgressBar
 from kivy.uix.widget import Widget
 from kivy.uix.boxlayout import BoxLayout
 import time
+from kivy.uix.image import Image
 
 Config.set('graphics', 'width', '960')
 Config.set('graphics', 'height', '540')
@@ -27,7 +28,7 @@ class SoundPlayer(BoxLayout):
         if sound:
             sound.play()
 
-          
+
 class LebronLayout(Widget):
     def __init__(self, **args):
         super(LebronLayout, self).__init__(**args)
@@ -47,13 +48,23 @@ class LebronLayout(Widget):
                     ) 
         btn.bind(on_press = lambda x: self.callback(btn,pb))
         self.add_widget(btn)
-    
+        
+        background = Button(background_normal='LeBackground.png',
+                            background_down ='LeBackground.png',
+                           size = (1200,825),
+                           pos = (0,-75)
+                           )
+        background.bind(on_press = lambda x: self.start(background))
+        self.add_widget(background)
+    def start(self,back):
+        animation= Animation(size=(0,0), t='in_out_back',d = 2)
+        animation.start(back)
     def callback(self,btn,pb):
         SoundPlayer.play_sound(self)
         global canClick
         global lastClick
         currentTime = time.time()
-        if currentTime - lastClick > 1:
+        if currentTime - lastClick > 0.5:
             canClick = True
         if canClick == True:
             animation = Animation(pos=(random.randint(0,960),random.randint(0,400)), t='in_out_back',d = 0.5)
