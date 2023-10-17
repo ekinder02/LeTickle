@@ -33,7 +33,9 @@ class LeTickleApp(App):
                    ) 
         btn.bind(on_press = lambda x: self.callback(btn))
         return btn 
-    def callback(self,btn):
+    #code to delay on click animatio
+    
+    def callback(self,btn, ):
         SoundPlayer.play_sound(self)
         animation = Animation(pos=(random.randint(0,960),random.randint(0,540)), t='in_out_back')
         animation.start(btn)
