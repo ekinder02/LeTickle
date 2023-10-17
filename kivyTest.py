@@ -27,6 +27,11 @@ class SoundPlayer(BoxLayout):
         sound = SoundLoader.load('Cartoon Human Male Giggle - QuickSounds.com.mp3')
         if sound:
             sound.play()
+    def play_sound2(self):
+        sound = SoundLoader.load('Explosion+3.mp3')
+        if sound:
+            sound.play()
+    
 
 
 class LebronLayout(Widget):
@@ -38,6 +43,7 @@ class LebronLayout(Widget):
                         size = (500, 500))
         pb.value = tickles
         self.add_widget(pb)
+        
     
         btn = Button(text ="",
                         color =(1, 0, .65, 1),
@@ -69,15 +75,16 @@ class LebronLayout(Widget):
         if canClick == True:
             animation = Animation(pos=(random.randint(0,960),random.randint(0,400)), t='in_out_back',d = 0.5)
             animation.start(btn)
-            pb.value += 5
+            pb.value += 20
             if pb.value > 25 and pb.value <= 50:
                 btn.background_normal = 'lebronBlush1.png'
             elif pb.value > 50 and pb.value <= 75:
                 btn.background_normal = 'lebronBlush2.png'
-            elif pb.value > 75 and pb.value <= 100:
+            elif pb.value > 75 and pb.value <= 99:
                 btn.background_normal = 'lebronBlush3.png'
-            elif pb.value > 100:
+            elif pb.value >= 100:
                 btn.background_normal = 'lebronBlush4.png'
+                SoundPlayer.play_sound2(self)
             lastClick = time.time()
             canClick = False
 
