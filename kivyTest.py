@@ -12,6 +12,7 @@ from kivy.uix.image import Image
 
 Config.set('graphics', 'width', '960')
 Config.set('graphics', 'height', '540')
+Config.set('graphics', 'resizable', False)
 Config.write()
 
 tickles = 0
@@ -62,6 +63,7 @@ class LebronLayout(Widget):
                            )
         background.bind(on_press = lambda x: self.start(background))
         self.add_widget(background)
+        
     def start(self,back):
         animation= Animation(size=(0,0), t='in_out_back',d = 2)
         animation.start(back)
@@ -72,10 +74,10 @@ class LebronLayout(Widget):
         currentTime = time.time()
         if currentTime - lastClick > 0.5:
             canClick = True
-        if canClick == True:
+        if canClick == True and pb.value < 100:
             animation = Animation(pos=(random.randint(0,960),random.randint(0,400)), t='in_out_back',d = 0.5)
             animation.start(btn)
-            pb.value += 20
+            pb.value += 5
             if pb.value > 25 and pb.value <= 50:
                 btn.background_normal = 'lebronBlush1.png'
             elif pb.value > 50 and pb.value <= 75:
