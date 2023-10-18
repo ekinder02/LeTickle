@@ -119,7 +119,7 @@ class LebronLayout(Widget):
             animation.start(btn)
             
             #increases the progress bar
-            pb.value += 50
+            pb.value += 5
             
             #changes the lebron's face based on the progress bar
             if pb.value > 25 and pb.value <= 50:
