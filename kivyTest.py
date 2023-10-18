@@ -68,7 +68,7 @@ class LebronLayout(Widget):
         # Create the background widget
         background = Button(background_normal='LeBackground.png',
                             background_down ='LeBackground.png',
-                           size = (1200,825),
+                           size = (1200,750),
                            pos = (0,-75)
                            )
         #makes the background do stuff when clicked
@@ -79,10 +79,10 @@ class LebronLayout(Widget):
         end = Button(background_normal='click.jpg',
                             background_down ='click.jpg',
                            size = (0,0),
-                           pos = (0,-75)
+                           pos = (0,-25)
                            )
         #makes the end screen do stuff when clicked
-        end.bind(on_press = lambda x: self.restart(end,pb))
+        end.bind(on_press = lambda x: self.restart(end,pb,btn))
         self.add_widget(end)
         
     #makes the background shrink when clicked
@@ -91,10 +91,12 @@ class LebronLayout(Widget):
         animation.start(back)
         
     #makes the end screen shrink when clicked and restarts the game
-    def restart(self,back,pb):
+    def restart(self,back,pb,btn):
         animation= Animation(size=(0,0), t='in_out_back',d = 2)
+        animation&= Animation(pos=(0,-25),d = 0)
         animation.start(back)
         pb.value = 0
+        btn.background_normal = 'lebron.png'
         
     #what happens when the lebron is clicked
     def callback(self,btn,pb,end):
@@ -130,7 +132,8 @@ class LebronLayout(Widget):
             elif pb.value >= 100:
                 btn.background_normal = 'lebronBlush4.png'
                 SoundPlayer.play_sound2(self)
-                grow = Animation(size=(1200,825), t='in_out_back',d = 2)
+                grow = Animation(size=(1200,700), t='in_out_back',d = 2)
+                grow &= Animation(pos=(0,0),d = 0)
                 grow.start(end)
             lastClick = time.time()
             canClick = False
