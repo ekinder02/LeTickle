@@ -69,7 +69,7 @@ class LebronLayout(Widget):
         background = Button(background_normal='LeBackground.png',
                             background_down ='LeBackground.png',
                            size = (1200,750),
-                           pos = (0,-75)
+                           pos = (0,-25)
                            )
         #makes the background do stuff when clicked
         background.bind(on_press = lambda x: self.start(background))
@@ -119,7 +119,7 @@ class LebronLayout(Widget):
             animation.start(btn)
             
             #increases the progress bar
-            pb.value += 5
+            pb.value += 50
             
             #changes the lebron's face based on the progress bar
             if pb.value > 25 and pb.value <= 50:
@@ -133,7 +133,7 @@ class LebronLayout(Widget):
                 btn.background_normal = 'lebronBlush4.png'
                 SoundPlayer.play_sound2(self)
                 grow = Animation(size=(1200,700), t='in_out_back',d = 2)
-                grow &= Animation(pos=(0,0),d = 0)
+                grow&= Animation(pos=(0,0),d = 0)
                 grow.start(end)
             lastClick = time.time()
             canClick = False
